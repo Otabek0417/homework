@@ -30,12 +30,13 @@ function App() {
   const closeModal = () => {
     setShowModal(false);
   };
-  function newEvents(event) {
+
+  const newEvents = (event) => {
     setEvents((prev) => {
       return [...prev, event];
     });
     setShowModal(false);
-  }
+  };
   const title = "Otabek Kingdom👑 Events";
   const subtitle = "All events well be here:)";
   return (

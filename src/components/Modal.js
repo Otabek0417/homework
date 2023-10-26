@@ -14,7 +14,6 @@ function Modal({ children, closeModal, isModeModal }) {
       >
         {children}
         <br />
-        <br />
         <button className={isModeModal ? "btn" : null} onClick={closeModal}>
           Close
         </button>

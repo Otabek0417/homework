@@ -5,47 +5,54 @@ import "./NewEventForm.css";
 function NewEventForm({ newEvents, closeModal }) {
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
+  const [location, setLocation] = useState("fargona");
 
-  const resetInput = () => {
+  console.log("location", location);
+  const resetInputs = () => {
     setTitle("");
     setDate("");
   };
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    let event = {
+    const events = {
       title: title,
       date: date,
+      location: location,
       id: uuidv4(),
     };
-    resetInput();
-    newEvents(event);
-  }
+    console.log(events);
+    newEvents(events);
+    resetInputs();
+  };
   return (
-    <form className="new-event-form" onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="new-event-form">
       <label>
-        Event Title:
+        <span>Event Title:</span>
         <input
-          onChange={(e) => setTitle(e.target.value.trim())}
+          onChange={(e) => setTitle(e.target.value)}
           type="text"
           value={title}
+          required
         />
       </label>
       <label>
-        Event Date:
+        <span>Event Date:</span>
         <input
-          onChange={(e) => setDate(e.target.value.trim())}
+          onChange={(e) => setDate(e.target.value)}
           type="date"
           value={date}
+          required
         />
       </label>
-      <button onClick={() => resetInput()} type="button">
-        Clear input
-      </button>
-      <br />
-      <br />
+      <label>
+        Location:
+        <select onChange={(e) => setLocation(e.target.value)}>
+          <option value="fargona">Farg'ona</option>
+          <option value="toshkent">Toshkent</option>
+          <option value="andijon">Andijon</option>
+        </select>
+      </label>
       <button>Submit</button>
-      <p>Title:{title}</p>
-      <p>Date:{date}</p>
     </form>
   );
 }
